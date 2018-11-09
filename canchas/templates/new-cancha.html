@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+</br></br>
+
+<form method="post">
+  {% csrf_token %}
+  <label>Nombre</label>
+  <input type="text" name="nombre">
+  <label>Codigo</label>
+  <input type="text" name="codigo">
+  <label>Tipo</label>
+  <select name="tipo">
+    {% for x, y  in canchas %}
+      <option value="{{ x }}">{{ y }}</option>
+    {% endfor %}
+  </select>
+  <label> Vestuario? </label>
+  <input type="checkbox" name="vestuario">
+  <label> Iluminacion? </label>
+  <input type="checkbox" name="iluminacion">
+  <label> Sintetico? </label>
+  <input type="checkbox" name="sintetico">
+  <button class="btn btn-dark" type="submit">Crear!</button>
+</form>
+
+{% endblock %}

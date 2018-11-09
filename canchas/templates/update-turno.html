@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="cancha">Cancha : {{ turno.cancha.nombre }}</label>
+  </div>
+  <div class="form-group">
+    <label for="cliente">Cliente : {{turno.cliente}}</label>
+  </div>
+  <div class="form-group">
+    <label for="empleado">Empleado : {{turno.empleado}}</label>
+  </div>
+  <div class="form-group">
+    <label for="datetime">Fecha y hora</label>
+    <input type="datetime-local" class="form-control" name="datetime">
+  </div>
+  <div>
+    <button class="btn btn-dark" type="submit">Modificar!</button>
+  </div>
+</form>
+{% endblock %}

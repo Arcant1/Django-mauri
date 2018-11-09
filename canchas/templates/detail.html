@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .fondo {
+    background-image: url('{% static 'background.jpg' %}');  
+    background-repeat:no-repeat;
+    background-size:100%;
+  }
+</style>
+</br>
+<div class="container">
+	<div class="fondo">
+	<table class="table">
+		<tr>
+			<td class="table-dark">#</td>
+			<td class="table-dark"><span class="label label-default">{{cancha.id}}</span></td>
+		</tr>
+		<tr>
+			<td class="table-light">Nombre</td>
+			<td class="table-light"><span class="label label-default">{{cancha.nombre}}</span></td>
+		</tr>
+		<tr>
+			<td class="table-dark">Codigo interno</td>
+			<td class="table-dark"><span class="label label-default">{{cancha.cod}}</span></td>
+		</tr>
+		<tr>
+			<td class="table-light">Tipo</td>
+			<td class="table-light"><span class="label label-default">{{cancha.tipo}}</span></td>
+		</tr>
+		<tr>
+			<td class="table-dark">Vestuario disponible?</td>
+			<td class="table-dark"><span class="label label-default">{{cancha.vestuario}}</span></td>
+		</tr>
+		<tr>
+			<td class="table-light">Iluminacion?</td>
+			<td class="table-light"><span class="label label-default">{{cancha.iluminacion}}</span></td>
+		</tr>
+		<tr>
+			<td class="table-dark">Cesped sintetico?</td>
+			<td class="table-dark"><span class="label label-default">{{cancha.sintetico}}</span></td>
+		</tr>
+	</table>
+	</div>
+</div>
+<div class="container">
+	<a href="{% url 'new-turno' cancha.id %}"><button class="btn btn-primary">Nuevo turno!</button></a>
+	<table class="table">
+		{% for i in turno %}
+			<tr>
+				<td class="table-light"><span class="label label-default">Cliente: {{i.cliente}}</span></td>
+				<td class="table-light"><span class="label label-default">Empleado: {{i.empleado}}</span></td>
+				<td class="table-light"><span class="label label-default">Dia: {{i.fyh|date:"d F, Y"}}</span></td>
+				<td class="table-light"><span class="label label-default">Hora: {{i.fyh|date:"G:i"}}</span></td>
+				<td class="table-light"><a href="{% url 'delete-turno' i.id %}"><button class="btn btn-danger">Eliminar turno!</button></a></td>
+				<td class="table-light"><a href="{% url 'update-turno' i.id %}"><button class="btn btn-warning">Modificar turno!</button></a></td>
+			</tr>
+		{% endfor %}
+		</table>
+		<a href="{% url 'delete-cancha' cancha.id %}"><button class="btn btn-dark">Eliminar {{ cancha.nombre }}</button></a>
+
+</div>
+
+{% endblock %}

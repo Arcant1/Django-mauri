@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+</br></br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Vestuario disponible?</th>
+      <th scope="col">Iluminacion?</th>
+      <th scope="col">Cesped sintetico?</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for can in canchas %}
+    <tr>
+      <td><a href="{% url 'detail' can.id %}">{{ can.nombre|upper }}</a></th>
+      <td>{{ can.tipo }}</td>
+      <td>{{ can.vestuario }}</td>
+      <td>{{ can.iluminacion }}</td>
+      <td>{{ can.sintetico }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'new-cancha' %}">
+  <button class="btn btn-dark">
+  Añadir Cancha!
+  </button>
+</a>
+{% endblock %}
